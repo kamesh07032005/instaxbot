@@ -12,7 +12,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { handleGetStarted, scrollToSection } from "../utils/navigation";
-import VideoPlayer from "./VideoPlayer";
+// import VideoPlayer from "./VideoPlayer";
 
 const Hero = () => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
@@ -114,7 +114,10 @@ const Hero = () => {
   );
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-purple-50 via-white to-white">
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-purple-50 via-white to-white"
+    >
       {bubbles.map((bubble, index) => (
         <motion.div
           key={index}
@@ -137,27 +140,13 @@ const Hero = () => {
         />
       ))}
 
-      <div className="max-w-7xl mx-auto px-4 relative z-10 pt-20">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="absolute top-10 right-10 hidden lg:block"
-        >
-          <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-3 shadow-lg">
-            <div className="flex items-center space-x-2">
-              <TrendingUp className="text-green-500 w-5 h-5" />
-              <span className="text-sm font-semibold">98% Success Rate</span>
-            </div>
-          </div>
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="max-w-7xl mx-auto px-4 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[calc(100vh-65px)]">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center lg:text-left"
+            className="text-center lg:text-left mt-10 lg:mt-0"
           >
             <motion.div
               className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm rounded-full pl-2 pr-4 py-2 shadow-xl mb-6"

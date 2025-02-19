@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, MessageSquareMore } from "lucide-react";
-import { handleGetStarted } from "../utils/navigation";
+
+const handleLogin = () => {
+  window.location.href = "/login";
+};
+
+const handleSignup = () => {
+  window.location.href = "/signup";
+};
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -17,6 +24,7 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
+    { href: "#home", label: "Home" },
     { href: "#features", label: "Features" },
     { href: "#testimonials", label: "Testimonials" },
     { href: "#pricing", label: "Pricing" },
@@ -121,20 +129,24 @@ const Navbar = () => {
                     )}
                   </motion.a>
                 ))}
-                <motion.button
-                  onClick={handleGetStarted}
-                  className={`px-5 py-2 rounded-lg bg-gradient-to-r from-pink-500 to-purple-500 
-                    text-white font-medium transition-all duration-300
-                    ${
-                      isScrolled
-                        ? "shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40"
-                        : ""
-                    }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Get Started
-                </motion.button>
+                <div className="flex items-center space-x-4">
+                  <motion.button
+                    onClick={handleLogin}
+                    className="px-4 py-2 rounded-lg border border-primary text-primary hover:bg-primary/10 font-medium transition-all duration-300"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Login
+                  </motion.button>
+                  <motion.button
+                    onClick={handleSignup}
+                    className="px-4 py-2 rounded-lg bg-gradient-to-r from-pink-500 to-purple-500 text-white font-medium shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 transition-all duration-300"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Sign Up
+                  </motion.button>
+                </div>
               </div>
 
               {/* Mobile Menu Button */}
@@ -188,17 +200,24 @@ const Navbar = () => {
                       {label}
                     </motion.a>
                   ))}
-                  <motion.button
-                    onClick={() => {
-                      handleGetStarted();
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className="w-full mt-4 px-6 py-3 rounded-lg bg-gradient-to-r from-pink-500 to-purple-500 text-white font-medium"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    Get Started
-                  </motion.button>
+                  <div className="flex flex-col space-y-2 mt-4">
+                    <motion.button
+                      onClick={handleLogin}
+                      className="w-full px-6 py-3 rounded-lg border border-primary text-primary font-medium"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      Login
+                    </motion.button>
+                    <motion.button
+                      onClick={handleSignup}
+                      className="w-full px-6 py-3 rounded-lg bg-gradient-to-r from-pink-500 to-purple-500 text-white font-medium"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      Sign Up
+                    </motion.button>
+                  </div>
                 </div>
               </motion.div>
             )}

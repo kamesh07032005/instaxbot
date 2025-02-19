@@ -59,59 +59,47 @@ const features = [
   },
 ];
 
-const additionalFeatures = [
-  {
-    icon: Store,
-    title: "E-commerce Integration",
-    description:
-      "Perfect for online stores managing product inquiries and orders through Instagram",
-    useCase: "Fashion retailers automating size and availability queries",
-    color: "from-pink-500 to-rose-500",
-  },
-  {
-    icon: ShoppingBag,
-    title: "Order Processing",
-    description:
-      "Streamline your order management workflow from inquiry to fulfillment",
-    useCase: "Food businesses managing daily order volumes efficiently",
-    color: "from-amber-500 to-orange-500",
-  },
-  {
-    icon: Inbox,
-    title: "Message Organization",
-    description:
-      "Smart categorization of messages based on intent and priority",
-    useCase: "Service providers managing multiple client conversations",
-    color: "from-emerald-500 to-green-500",
-  },
-];
+const additionalFeatures = [];
 
 const useCases = [
   {
     title: "Retail & E-commerce",
     description:
-      "Handle product inquiries, process orders, and manage customer support automatically",
+      "Streamline customer support and boost sales with automated responses",
     stats: "3x faster response time",
   },
   {
     title: "Service Providers",
     description:
-      "Schedule appointments, answer FAQs, and maintain client relationships effortlessly",
+      "Schedule appointments and maintain client relationships effortlessly",
     stats: "80% reduction in manual tasks",
   },
   {
     title: "Content Creators",
     description:
-      "Engage with followers, manage collaborations, and automate responses to common questions",
+      "Engage with followers, manage collaborations, and automate responses",
     stats: "2x engagement rate",
   },
 ];
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  }),
+};
 
 const Features = () => {
   return (
     <section
       id="features"
-      className="py-24 bg-gray-50 relative overflow-hidden px-4 sm:px-6 lg:px-8"
+      className="py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden px-4 sm:px-6 lg:px-8"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -152,51 +140,64 @@ const Features = () => {
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              custom={index}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-              className="group relative bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300"
+              whileHover={{ scale: 1.02 }}
+              className="group relative bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
             >
-              {/* Feature Card Header */}
-              <div className="flex items-start space-x-4">
-                <div
-                  className={`p-3 rounded-xl bg-gradient-to-br ${feature.color} transform group-hover:scale-110 transition-transform duration-300`}
+              {/* Gradient Background Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-5 transition-opacity duration-300 ease-in-out" />
+
+              {/* Feature Icon */}
+              <div className="relative z-10">
+                <motion.div
+                  whileHover={{ rotate: [0, -10, 10, -10, 0] }}
+                  transition={{ duration: 0.5 }}
+                  className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${feature.color} p-3 
+                  transform group-hover:scale-110 transition-transform duration-300 
+                  shadow-lg flex items-center justify-center`}
                 >
-                  <feature.icon className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900">
-                    {feature.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-primary font-medium">
-                    {feature.stats}
-                  </p>
-                </div>
+                  <feature.icon className="w-8 h-8 text-white" />
+                </motion.div>
               </div>
 
-              {/* Feature Description */}
-              <p className="mt-4 text-gray-600">{feature.description}</p>
+              {/* Feature Content */}
+              <div className="mt-6 relative z-10">
+                <h3 className="text-2xl font-bold text-gray-900 group-hover:text-primary transition-colors">
+                  {feature.title}
+                </h3>
+                <div className="mt-2 flex items-center space-x-2">
+                  <span className="px-3 py-1 bg-primary/10 rounded-full text-sm font-semibold text-primary">
+                    {feature.stats}
+                  </span>
+                </div>
+                <p className="mt-4 text-gray-600 group-hover:text-gray-700">
+                  {feature.description}
+                </p>
 
-              {/* Learn More Link */}
-              <motion.div
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: 0.2 }}
-                className="mt-4 flex items-center text-primary font-medium group-hover:text-secondary transition-colors"
-              >
-                <span>Learn more</span>
-                <ArrowRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" />
-              </motion.div>
+                {/* Learn More Link */}
+                <motion.div
+                  initial={{ x: -10, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  className="mt-6 flex items-center text-primary font-medium 
+                  group-hover:text-secondary transition-all duration-300"
+                >
+                  <span>Learn more</span>
+                  <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-2 transition-transform" />
+                </motion.div>
+              </div>
 
-              {/* Progress Bar */}
+              {/* Animated Border */}
               <motion.div
-                className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-secondary rounded-b-2xl"
-                initial={{ scaleX: 0 }}
-                whileHover={{ scaleX: 1 }}
-                transition={{ duration: 0.3 }}
+                className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-secondary to-primary"
+                initial={{ backgroundPosition: "0% 50%" }}
+                whileHover={{
+                  backgroundPosition: ["0% 50%", "100% 50%"],
+                  transition: { duration: 1.5, repeat: Infinity },
+                }}
               />
             </motion.div>
           ))}
@@ -239,71 +240,84 @@ const Features = () => {
           {useCases.map((useCase, index) => (
             <motion.div
               key={useCase.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              custom={index}
+              whileHover={{ scale: 1.02 }}
+              className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl 
+              transition-all duration-300 border border-gray-100 hover:border-primary/20"
             >
-              <h4 className="text-xl font-semibold text-gray-900">
-                {useCase.title}
-              </h4>
-              <p className="mt-2 text-gray-600">{useCase.description}</p>
-              <div className="mt-4 inline-block px-3 py-1 bg-primary/10 rounded-full">
-                <span className="text-primary font-medium">
-                  {useCase.stats}
-                </span>
+              <div className="h-full flex flex-col">
+                <h4
+                  className="text-2xl font-bold bg-clip-text text-transparent 
+                bg-gradient-to-r from-primary to-secondary"
+                >
+                  {useCase.title}
+                </h4>
+                <p className="mt-4 text-gray-600 flex-grow">
+                  {useCase.description}
+                </p>
+                <motion.div
+                  className="mt-6 inline-block"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <span
+                    className="px-4 py-2 bg-gradient-to-r from-primary/10 
+                  to-secondary/10 rounded-full text-primary font-semibold"
+                  >
+                    {useCase.stats}
+                  </span>
+                </motion.div>
               </div>
             </motion.div>
           ))}
         </div>
 
         {/* Additional Features Section */}
-        <div className="mt-32 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8">
           {additionalFeatures.map((feature, index) => (
             <motion.div
               key={feature.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white p-6 rounded-xl shadow-lg"
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              custom={index}
+              whileHover={{ scale: 1.02 }}
+              className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl 
+              transition-all duration-300 relative overflow-hidden"
             >
               <div
-                className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${feature.color}`}
+                className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${feature.color}
+              transform group-hover:scale-110 transition-transform duration-300`}
               >
-                <feature.icon className="w-6 h-6 text-white" />
+                <feature.icon className="w-8 h-8 text-white" />
               </div>
-              <h4 className="mt-4 text-xl font-semibold text-gray-900">
+
+              <h4
+                className="mt-6 text-2xl font-bold text-gray-900 group-hover:text-primary 
+              transition-colors"
+              >
                 {feature.title}
               </h4>
-              <p className="mt-2 text-gray-600">{feature.description}</p>
-              <div className="mt-4 p-4 bg-gray-50 rounded-lg">
+
+              <p className="mt-4 text-gray-600">{feature.description}</p>
+
+              <motion.div
+                initial={{ y: 20, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                className="mt-6 p-4 bg-gray-50 rounded-xl transform group-hover:-translate-y-1 
+                transition-transform duration-300"
+              >
                 <p className="text-sm text-gray-600">
-                  <span className="font-medium">Use Case:</span>{" "}
+                  <span className="font-semibold text-primary">Use Case: </span>
                   {feature.useCase}
                 </p>
-              </div>
+              </motion.div>
             </motion.div>
           ))}
         </div>
-
-        {/* Call to Action */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-20 text-center"
-        >
-          <button
-            onClick={() => scrollToSection("pricing")}
-            className="btn-primary group"
-          >
-            <span>Start Automating Today</span>
-            <ArrowRight className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" />
-          </button>
-        </motion.div>
       </div>
     </section>
   );
