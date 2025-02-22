@@ -13,6 +13,7 @@ import {
   Inbox,
 } from "lucide-react";
 import { scrollToSection } from "../utils/navigation";
+import ChatDemo from "./ChatDemo";
 
 const features = [
   {
@@ -146,7 +147,7 @@ const Features = () => {
               custom={index}
               viewport={{ once: true }}
               whileHover={{ scale: 1.03, y: -5, rotateY: 5 }}
-              className="group relative bg-white/95 backdrop-blur-lg p-8 rounded-3xl 
+              className="group relative bg-white/95 backdrop-blur-lg p-6 rounded-3xl 
               shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.15)]
               border border-gray-100/50 transition-all duration-500 overflow-hidden
               hover:bg-gradient-to-br hover:from-white/98 hover:to-white/90
@@ -235,7 +236,7 @@ const Features = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-16 text-center"
+          className="mt-12 text-center"
         >
           <button
             onClick={() => scrollToSection("pricing")}
@@ -246,63 +247,139 @@ const Features = () => {
           </button>
         </motion.div>
 
+        {/* Chat Demo Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-48"
+        >
+          <h3 className="text-2xl font-bold text-gray-900 text-center">
+            Experience the Power of AI-Driven Conversations
+          </h3>
+          <p className="mt-4 text-gray-600 max-w-2xl mx-auto text-center">
+            See how our intelligent chatbot handles real customer interactions
+          </p>
+
+          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Chat Demo Section - Left Side */}
+            <div className="max-w-[420px] mx-auto lg:ml-0">
+              <ChatDemo />
+            </div>
+
+            {/* Description Section - Right Side */}
+            <div className="space-y-8">
+              <div>
+                <h4 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+                  Transform Your Instagram Business
+                </h4>
+                <p className="mt-4 text-gray-600 leading-relaxed">
+                  Our AI-powered chatbot understands context, maintains natural conversations, and helps you convert more customers. Experience seamless automation that feels personal and engaging.
+                </p>
+              </div>
+
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 p-2 bg-primary/10 rounded-lg">
+                    <MessageSquareMore className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h5 className="font-semibold text-gray-900">Natural Conversations</h5>
+                    <p className="text-gray-600">AI-driven responses that sound human and maintain context</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 p-2 bg-primary/10 rounded-lg">
+                    <ShoppingCart className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h5 className="font-semibold text-gray-900">Seamless Order Processing</h5>
+                    <p className="text-gray-600">Handle product inquiries and orders automatically</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 p-2 bg-primary/10 rounded-lg">
+                    <Users className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h5 className="font-semibold text-gray-900">24/7 Customer Support</h5>
+                    <p className="text-gray-600">Never miss a customer inquiry, even outside business hours</p>
+                  </div>
+                </div>
+              </div>
+
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="btn-primary group inline-flex items-center space-x-2"
+                onClick={() => scrollToSection("pricing")}
+              >
+                <span>Get Started Today</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </motion.button>
+            </div>
+          </div>
+        </motion.div>
+
         {/* Use Cases Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mt-32 text-center"
+          className="mt-32"
         >
-          <h3 className="text-2xl font-bold text-gray-900">
-            Real-World Applications
+          <h3 className="text-2xl font-bold text-gray-900 text-center">
+            Perfect for Every Business
           </h3>
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-            See how businesses are transforming their Instagram presence with
-            Instaxbot
+          <p className="mt-4 text-gray-600 max-w-2xl mx-auto text-center">
+            See how different businesses are using our platform to grow
           </p>
+
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+            {useCases.map((useCase, index) => (
+              <motion.div
+                key={useCase.title}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                custom={index}
+                whileHover={{ scale: 1.02 }}
+                className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl 
+                transition-all duration-300 border border-gray-100 hover:border-primary/20"
+              >
+                <div className="h-full flex flex-col">
+                  <h4
+                    className="text-2xl font-bold bg-clip-text text-transparent 
+                  bg-gradient-to-r from-primary to-secondary"
+                  >
+                    {useCase.title}
+                  </h4>
+                  <p className="mt-4 text-gray-600 flex-grow">
+                    {useCase.description}
+                  </p>
+                  <motion.div
+                    className="mt-6 inline-block"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <span
+                      className="px-4 py-2 bg-gradient-to-r from-primary/10 
+                    to-secondary/10 rounded-full text-primary font-semibold"
+                    >
+                      {useCase.stats}
+                    </span>
+                  </motion.div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
 
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-          {useCases.map((useCase, index) => (
-            <motion.div
-              key={useCase.title}
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              custom={index}
-              whileHover={{ scale: 1.02 }}
-              className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl 
-              transition-all duration-300 border border-gray-100 hover:border-primary/20"
-            >
-              <div className="h-full flex flex-col">
-                <h4
-                  className="text-2xl font-bold bg-clip-text text-transparent 
-                bg-gradient-to-r from-primary to-secondary"
-                >
-                  {useCase.title}
-                </h4>
-                <p className="mt-4 text-gray-600 flex-grow">
-                  {useCase.description}
-                </p>
-                <motion.div
-                  className="mt-6 inline-block"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <span
-                    className="px-4 py-2 bg-gradient-to-r from-primary/10 
-                  to-secondary/10 rounded-full text-primary font-semibold"
-                  >
-                    {useCase.stats}
-                  </span>
-                </motion.div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
         {/* Additional Features Section */}
-        <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
           {additionalFeatures.map((feature, index) => (
             <motion.div
               key={feature.title}

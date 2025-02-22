@@ -52,7 +52,7 @@ const Signup = () => {
   ];
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-purple-50 via-white to-white px-4 pt-[65px]">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 px-4 pt-[65px]">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -63,7 +63,7 @@ const Signup = () => {
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4"
+            className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-indigo-400/10 to-purple-400/10 mb-4"
           >
             <UserPlus className="w-8 h-8 text-primary" />
           </motion.div>
@@ -104,16 +104,65 @@ const Signup = () => {
             ))}
           </div>
 
-          <motion.button
-            type="submit"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-lg shadow-sm text-white bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all"
-          >
-            <span>Create Account</span>
-            <ArrowRight className="ml-2 w-4 h-4" />
-          </motion.button>
+          <div className="space-y-4">
+            <label className="flex items-center cursor-pointer group">
+              <div className="relative">
+                <input
+                  type="checkbox"
+                  checked={acceptTerms}
+                  onChange={(e) => setAcceptTerms(e.target.checked)}
+                  className="sr-only peer"
+                />
+                <div className="w-4 h-4 border-2 border-gray-300 rounded group-hover:border-primary peer-checked:border-primary peer-checked:bg-primary transition-colors">
+                  <motion.div
+                    initial={false}
+                    animate={{ scale: acceptTerms ? 1 : 0 }}
+                    className="absolute inset-0 flex items-center justify-center text-white"
+                  >
+                    <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </motion.div>
+                </div>
+              </div>
+              <span className="ml-2 text-sm text-gray-600 group-hover:text-gray-900">
+                I agree to the <a href="#" className="text-primary hover:text-secondary">Terms of Service</a> and <a href="#" className="text-primary hover:text-secondary">Privacy Policy</a>
+              </span>
+            </label>
+
+            <motion.button
+              type="submit"
+              disabled={isLoading}
+              className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-lg shadow-sm text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-600 hover:via-purple-600 hover:to-pink-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden"
+              whileHover={{ scale: isLoading ? 1 : 1.02 }}
+              whileTap={{ scale: isLoading ? 1 : 0.98 }}
+            >
+              <AnimatePresence mode="wait">
+                {isLoading ? (
+                  <motion.div
+                    key="loading"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="absolute inset-0 flex items-center justify-center bg-primary"
+                  >
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="button-content"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="flex items-center"
+                  >
+                    Create Account
+                    <ArrowRight className="ml-2 -mr-1 w-5 h-5" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.button>
+          </div>
         </form>
 
         <motion.p

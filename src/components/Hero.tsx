@@ -116,7 +116,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-purple-50 via-white to-white"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-indigo-50 via-purple-50 to-pink-50"
     >
       {bubbles.map((bubble, index) => (
         <motion.div
