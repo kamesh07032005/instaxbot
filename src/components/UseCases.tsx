@@ -131,7 +131,7 @@ const UseCases = () => {
           </p>
         </motion.div>
 
-        <div className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="mt-12 sm:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {displayedCases.map((useCase, index) => (
             <motion.div
               key={useCase.title}
@@ -148,9 +148,9 @@ const UseCases = () => {
               className="group bg-white rounded-2xl shadow-lg overflow-hidden transform-gpu transition-all duration-300 cursor-pointer hover:bg-gradient-to-br hover:from-white/98 hover:to-white/95"
             >
               {/* Instagram-style Header */}
-              <div className="p-4 flex items-center justify-between border-b border-gray-100">
+              <div className="p-3 sm:p-4 flex items-center justify-between border-b border-gray-100">
                 <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-full ring-2 ring-white flex items-center justify-center">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary to-secondary rounded-full ring-2 ring-white flex items-center justify-center">
                     <useCase.icon className="w-5 h-5 text-white" />
                   </div>
                   <div>
@@ -184,13 +184,13 @@ const UseCases = () => {
               </div>
 
               {/* Post Caption */}
-              <div className="p-4">
+              <div className="p-3 sm:p-4">
                 <h4 className="font-semibold text-gray-900">{useCase.title}</h4>
                 <p className="mt-1 text-sm text-gray-600">{useCase.description}</p>
               </div>
 
               {/* Instagram-style Footer */}
-              <div className="px-4 py-3 border-t border-gray-100">
+              <div className="px-3 sm:px-4 py-2 sm:py-3 border-t border-gray-100">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center space-x-4">
                     <motion.button
@@ -266,7 +266,7 @@ const UseCases = () => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.5 }}
               onClick={scrollToTop}
-              className="fixed bottom-8 right-8 bg-primary text-white p-4 rounded-full shadow-lg hover:bg-secondary transition-colors duration-300"
+              className="fixed bottom-4 sm:bottom-8 right-4 sm:right-8 bg-primary text-white p-3 sm:p-4 rounded-full shadow-lg hover:bg-secondary transition-colors duration-300"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
