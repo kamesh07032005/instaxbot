@@ -145,60 +145,87 @@ const Features = () => {
               whileInView="visible"
               custom={index}
               viewport={{ once: true }}
-              whileHover={{ scale: 1.02 }}
-              className="group relative bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
+              whileHover={{ scale: 1.03, y: -5, rotateY: 5 }}
+              className="group relative bg-white/95 backdrop-blur-lg p-8 rounded-3xl 
+              shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.15)]
+              border border-gray-100/50 transition-all duration-500 overflow-hidden
+              hover:bg-gradient-to-br hover:from-white/98 hover:to-white/90
+              transform perspective-1000 hover:rotate-y-3 hover:-rotate-x-3"
             >
-              {/* Gradient Background Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-5 transition-opacity duration-300 ease-in-out" />
+              {/* Enhanced Gradient Background Effect */}
+              <div
+                className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-20 
+              transition-all duration-500 ease-out from-primary/40 to-secondary/40
+              group-hover:scale-105 transform-gpu blur-[2px]"
+              />
 
-              {/* Feature Icon */}
+              {/* Enhanced Blur Effect on Hover */}
+              <div
+                className="absolute inset-0 backdrop-blur-[3px] opacity-0 group-hover:opacity-100 
+              transition-all duration-500 ease-out"
+              />
               <div className="relative z-10">
                 <motion.div
-                  whileHover={{ rotate: [0, -10, 10, -10, 0] }}
-                  transition={{ duration: 0.5 }}
-                  className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${feature.color} p-3 
-                  transform group-hover:scale-110 transition-transform duration-300 
-                  shadow-lg flex items-center justify-center`}
+                  whileHover={{ rotate: [0, -10, 10, -5, 0], scale: 1.1 }}
+                  transition={{ duration: 0.6 }}
+                  className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.color} p-3.5
+                  transform group-hover:scale-115 transition-all duration-300 
+                  shadow-lg hover:shadow-2xl flex items-center justify-center
+                  relative before:absolute before:inset-0 before:rounded-2xl
+                  before:bg-gradient-to-br before:from-white/30 before:to-transparent/10
+                  hover:rotate-6 group-hover:translate-y-[-5px]`}
                 >
-                  <feature.icon className="w-8 h-8 text-white" />
+                  <feature.icon className="w-9 h-9 text-white relative z-10" />
                 </motion.div>
               </div>
 
-              {/* Feature Content */}
-              <div className="mt-6 relative z-10">
-                <h3 className="text-2xl font-bold text-gray-900 group-hover:text-primary transition-colors">
+              {/* Feature Content with Enhanced Typography */}
+              <div className="mt-7 relative z-10 space-y-4">
+                <h3
+                  className="text-2xl font-bold bg-clip-text text-transparent 
+                bg-gradient-to-r from-gray-900 to-gray-700 group-hover:from-primary 
+                group-hover:to-secondary transition-all duration-300"
+                >
                   {feature.title}
                 </h3>
-                <div className="mt-2 flex items-center space-x-2">
-                  <span className="px-3 py-1 bg-primary/10 rounded-full text-sm font-semibold text-primary">
+                <div className="flex items-center space-x-2">
+                  <span
+                    className="px-4 py-1.5 bg-gradient-to-r from-primary/10 to-secondary/10 
+                  rounded-full text-sm font-semibold text-primary"
+                  >
                     {feature.stats}
                   </span>
                 </div>
-                <p className="mt-4 text-gray-600 group-hover:text-gray-700">
+                <p className="text-gray-600 group-hover:text-gray-700 leading-relaxed">
                   {feature.description}
                 </p>
 
-                {/* Learn More Link */}
+                {/* Enhanced Learn More Link */}
                 <motion.div
                   initial={{ x: -10, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
-                  className="mt-6 flex items-center text-primary font-medium 
-                  group-hover:text-secondary transition-all duration-300"
+                  className="flex items-center text-primary font-medium 
+                  group-hover:text-secondary transition-colors duration-500 pt-2 
+                  relative overflow-hidden hover:pl-2"
                 >
-                  <span>Learn more</span>
+                  <span className="relative">
+                    Learn more
+                    <span
+                      className="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary 
+                    group-hover:w-full transition-all duration-300"
+                    />
+                  </span>
                   <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-2 transition-transform" />
                 </motion.div>
               </div>
 
-              {/* Animated Border */}
-              <motion.div
-                className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-secondary to-primary"
-                initial={{ backgroundPosition: "0% 50%" }}
-                whileHover={{
-                  backgroundPosition: ["0% 50%", "100% 50%"],
-                  transition: { duration: 1.5, repeat: Infinity },
-                }}
-              />
+              {/* Animated Border Gradient */}
+              <div
+                className="absolute inset-0 p-[1px] rounded-3xl bg-gradient-to-br opacity-0 
+              group-hover:opacity-100 transition-opacity duration-300 from-primary/20 via-secondary/20 to-primary/20"
+              >
+                <div className="absolute inset-0 rounded-3xl bg-white/80 backdrop-blur-lg" />
+              </div>
             </motion.div>
           ))}
         </div>
