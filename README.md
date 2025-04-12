@@ -1,6 +1,6 @@
-Here’s the updated `README.md` file as per your requirements:
 
-```markdown
+
+
 # InstaxBot
 
 InstaxBot is a powerful and efficient bot built primarily using TypeScript. It is designed to automate tasks, enhance productivity, and simplify workflows. This repository contains all the source code and resources needed to deploy and use InstaxBot effectively.
@@ -58,6 +58,5 @@ Follow these steps to set up the project on your local machine:
 ## Live Demo
 
 Check out the live version of InstaxBot here: [InstaxBot Live](https://instaxbot.netlify.app/)
-```
 
 Let me know if further modifications are needed!
